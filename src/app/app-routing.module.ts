@@ -5,6 +5,17 @@ import { MainNavComponent } from './shared/components/main-nav/main-nav.componen
 const routes: Routes = [{
   path: '',
   component: MainNavComponent,
+  children: [
+    { path: '', redirectTo: '/note', pathMatch: 'full' },
+    {
+      path: 'note',
+      loadChildren: () =>
+        import('./feature-modules/note/note.module').then(
+          m => m.NoteModule,
+        ),
+    },
+    { path: '**', redirectTo: '/note' },
+  ]
 }];
 
 @NgModule({
