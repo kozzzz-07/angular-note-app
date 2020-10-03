@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NoteComponent } from './components/pages/note/note.component';
+import { NotePageComponent } from './components/pages/note/note.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: NoteComponent
-  }
+    component: NotePageComponent,
+    children: [
+      {
+        // detail
+        path: ':id',
+        loadChildren: () =>
+          import('./components/pages/note/note.module').then(
+            (m) => m.NoteModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class NoteRoutingModule { }
+export class NoteRoutingModule {}
