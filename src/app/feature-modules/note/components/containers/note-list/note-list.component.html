@@ -1,3 +1,13 @@
-<a *ngFor="let note of notes" class="">
-  <div>hoge</div>
-</a>
+<div class="container">
+
+  <div class="list">
+    <ng-container *ngFor="let note of notes">
+      <app-presentation-note-list></app-presentation-note-list>
+    </ng-container>
+  </div>
+
+  <div class="detail">
+    <app-presentation-note-detail></app-presentation-note-detail>
+  </div>
+
+</div>

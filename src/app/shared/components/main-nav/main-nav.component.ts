@@ -3,13 +3,12 @@ import { Component, OnInit, HostListener } from '@angular/core';
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.scss']
+  styleUrls: ['./main-nav.component.scss'],
 })
 export class MainNavComponent implements OnInit {
-
   screenHeight = 0;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.getScreenHeightSize();

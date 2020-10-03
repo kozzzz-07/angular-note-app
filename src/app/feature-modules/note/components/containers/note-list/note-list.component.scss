@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  word-wrap: break-word;
+  height: 100vh;
+}
+
+.list {
+  width: 250px;
+  background-color: #DDD;
+  text-align: center;
+}
+
+.detail {
+  flex: 1;
+  min-width: 0;
+  background-color: #EEE;
+}

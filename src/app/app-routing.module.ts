@@ -15,7 +15,7 @@ const routes: Routes = [
             (m) => m.NoteModule
           ),
       },
-      // { path: '**', redirectTo: '/note' },
+      { path: '**', redirectTo: '/note' },
     ],
   },
 ];
