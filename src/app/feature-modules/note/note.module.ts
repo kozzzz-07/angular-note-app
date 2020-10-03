@@ -12,9 +12,9 @@ import { NoteDetailComponent } from './components/presentations/note-detail/note
   declarations: [
     NotePageComponent,
     NoteListContainerComponent,
-    // NoteDetailContainerComponent,
+    NoteDetailContainerComponent,
     NoteListComponent,
-    // NoteDetailComponent,
+    NoteDetailComponent,
   ],
   imports: [CommonModule, NoteRoutingModule],
 })

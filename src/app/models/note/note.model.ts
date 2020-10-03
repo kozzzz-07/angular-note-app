@@ -6,4 +6,4 @@ export type Note = {
   detail?: string;
 };
 
-type NoteID = string;
+export type NoteID = string;
