@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,6 +17,6 @@ import { NoteDetailComponent } from './components/presentations/note-detail/note
     NoteListComponent,
     NoteDetailComponent,
   ],
-  imports: [CommonModule, NoteRoutingModule],
+  imports: [CommonModule, NoteRoutingModule, SharedModule],
 })
 export class NoteModule {}
