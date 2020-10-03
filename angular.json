@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-note-app"
+    }
+  },
+  "defaultProject": "angular-note-app",
+  "cli": {
+    "analytics": false
+  }
 }

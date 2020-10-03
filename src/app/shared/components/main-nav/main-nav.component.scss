@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  word-wrap: break-word;
+}
+
+.side {
+  width: 250px;
+  background-color: #E60044;
+  text-align: center;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ly_box {
+  padding: 30px 5px 10px;
+  display: inline-block;
+}
+
+.appName {
+  font-size: 1.5rem;
+  color: #FFF;
+  font-weight: bold;
+}
+
