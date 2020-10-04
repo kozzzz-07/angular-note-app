@@ -1,9 +1,9 @@
 export type Note = {
-  id?: NoteID;
+  id: NoteID;
   title?: string;
   excerpt?: string;
   detail?: string;
-  createAt?: string;
+  createAt: string;
   updateAt?: string;
 };
 
