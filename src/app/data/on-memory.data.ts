@@ -24,8 +24,13 @@ class NoteRepostiry {
     },
   ];
 
-  createNote(note: Note): void {
+  createNote(): Observable<Note[]> {
+    const note: Note = {
+      id: this.genatreteId(),
+      createAt: new Date().toISOString(),
+    };
     this.notes = [{ ...note }, ...this.notes];
+    return of(this.notes);
   }
 
   updateNote(note: Note): boolean {
@@ -46,6 +51,10 @@ class NoteRepostiry {
   }
 
   private deleteNote() {}
+
+  private genatreteId(): NoteID {
+    return new Date().getTime().toString(36);
+  }
 }
 
 export const noteRepostiry = new NoteRepostiry();
