@@ -5,9 +5,12 @@
       <!-- TODO:コンポーネント化（app-buttonへの置き換え） -->
       <button class="button ly_button">+ ADD Note</button>
     </div>
-    <ng-container *ngFor="let note of notes">
-      <app-presentation-note-list></app-presentation-note-list>
-    </ng-container>
+    <div class="notes">
+      <ng-container *ngFor="let note of notes">
+        <app-presentation-note-list [id]="note.id" [title]="note.title" [createAt]="note.createAt"
+          [excerpt]="note.excerpt"></app-presentation-note-list>
+      </ng-container>
+    </div>
   </div>
 
   <div class="detail">

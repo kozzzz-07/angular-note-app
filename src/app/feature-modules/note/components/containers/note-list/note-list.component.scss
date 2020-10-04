@@ -5,6 +5,8 @@
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
   width: 250px;
   background-color: #DDD;
   text-align: center;
@@ -23,6 +25,10 @@
 .title {
   color: #666;
   font-size: 1.2rem;
+}
+
+.notes {
+  overflow: scroll;
 }
 
 /////////////////////////////
