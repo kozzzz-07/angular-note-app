@@ -6,9 +6,13 @@
       <button class="button ly_button">+ ADD Note</button>
     </div>
     <div class="notes">
-      <ng-container *ngFor="let note of notes">
-        <app-presentation-note-list [id]="note.id" [title]="note.title" [createAt]="note.createAt"
-          [excerpt]="note.excerpt"></app-presentation-note-list>
+      <ng-container *ngFor="let note of notes$ | async">
+        <app-presentation-note-list
+          [id]="note.id"
+          [title]="note.title"
+          [createAt]="note.createAt"
+          [excerpt]="note.excerpt"
+        ></app-presentation-note-list>
       </ng-container>
     </div>
   </div>

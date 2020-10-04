@@ -1,3 +1,4 @@
+import { NoteDataService } from './../../../services/note-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/models/note/note.model';
 
@@ -7,24 +8,11 @@ import { Note } from 'src/app/models/note/note.model';
   styleUrls: ['./note-list.component.scss'],
 })
 export class NoteListComponent implements OnInit {
-  notes: Note[] = [
-    {
-      id: 'a',
-      title: 'ほげほげ',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-    },
-    {
-      id: 'a',
-      title: 'ほげほげ',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-    },
-  ];
+  notes$ = this.noteDataService.notes$;
 
-  constructor() {}
+  constructor(private noteDataService: NoteDataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.noteDataService.fetchNotes();
+  }
 }
