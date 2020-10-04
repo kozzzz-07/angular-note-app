@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="list">
+    <div class="ly_box">
+      <div class="title">Notes</div>
+      <!-- TODO:コンポーネント化（app-buttonへの置き換え） -->
+      <button class="button ly_button">+ ADD Note</button>
+    </div>
+    <div class="notes">
+      <ng-container *ngFor="let note of notes">
+        <app-presentation-note-list [id]="note.id" [title]="note.title" [createAt]="note.createAt"
+          [excerpt]="note.excerpt"></app-presentation-note-list>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="detail">
+    <app-presentation-note-detail></app-presentation-note-detail>
+  </div>
+</div>
