@@ -1,5 +1,11 @@
-<div class="overview">
-  <div class="title">{{title || "Untitled"}}</div>
-  <div class="date">{{createAt | date:"yy/MM/dd"}}</div>
-  <div class="excerpt">{{excerpt}}</div>
+<div class="ly_box">
+  <div class="title">Notes</div>
+  <!-- TODO:コンポーネント化（app-buttonへの置き換え） -->
+  <button class="button ly_button" (click)="addNote.emit()">+ ADD Note</button>
+</div>
+<div class="notes">
+  <ng-container *ngFor="let note of notes">
+    <app-note-list-item [id]="note.id" [title]="note.title" [createAt]="note.createAt" [excerpt]="note.excerpt">
+    </app-note-list-item>
+  </ng-container>
 </div>

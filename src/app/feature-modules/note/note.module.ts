@@ -8,6 +8,7 @@ import { NoteListComponent as NoteListContainerComponent } from './components/co
 import { NoteDetailComponent as NoteDetailContainerComponent } from './components/containers/note-detail/note-detail.component';
 import { NoteListComponent } from './components/presentations/note-list/note-list.component';
 import { NoteDetailComponent } from './components/presentations/note-detail/note-detail.component';
+import { NoteListItemComponent } from './components/presentations/note-list-item/note-list-item.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NoteDetailComponent } from './components/presentations/note-detail/note
     NoteDetailContainerComponent,
     NoteListComponent,
     NoteDetailComponent,
+    NoteListItemComponent,
   ],
   imports: [CommonModule, NoteRoutingModule, SharedModule],
 })
