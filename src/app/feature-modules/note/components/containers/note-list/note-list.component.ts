@@ -1,6 +1,7 @@
+import { NoteID } from 'src/app/models/note/note.model';
+import { Note } from './../../../../../models/note/note.model';
 import { NoteDataService } from './../../../services/note-data.service';
 import { Component, OnInit } from '@angular/core';
-import { Note } from 'src/app/models/note/note.model';
 
 @Component({
   selector: 'app-note-list',
@@ -10,6 +11,8 @@ import { Note } from 'src/app/models/note/note.model';
 export class NoteListComponent implements OnInit {
   notes$ = this.noteDataService.notes$;
 
+  selectedNote: Note | undefined;
+
   constructor(private noteDataService: NoteDataService) {}
 
   ngOnInit(): void {
@@ -18,5 +21,9 @@ export class NoteListComponent implements OnInit {
 
   addNote(): void {
     this.noteDataService.createNote();
+  }
+
+  clickList(id: NoteID) {
+    this.selectedNote = this.noteDataService.getNoteById(id);
   }
 }

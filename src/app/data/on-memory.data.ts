@@ -16,8 +16,8 @@ class NoteRepostiry {
         'あああああああああああああああああああああああああああああああああああ',
     },
     {
-      id: 'a',
-      title: 'ほげほげ',
+      id: 'b',
+      title: 'ふがふが',
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
@@ -48,6 +48,10 @@ class NoteRepostiry {
 
   fetchNote(): Observable<Note> {
     return from(this.notes);
+  }
+
+  getNoteById(id: NoteID): Note | undefined {
+    return this.notes.find((note: { id: NoteID }) => note.id === id);
   }
 
   private deleteNote() {}

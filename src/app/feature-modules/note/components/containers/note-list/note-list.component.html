@@ -1,11 +1,16 @@
 <div class="container">
-  <ng-container *ngIf="notes$ | async as notes">
-    <div class="list">
-      <app-presentation-note-list [notes]="notes" (addNote)="addNote()"></app-presentation-note-list>
-    </div>
+  <div class="list">
+    <ng-container *ngIf="notes$ | async as notes">
+      <app-presentation-note-list [notes]="notes" (addNote)="addNote()" (clickList)="clickList($event)">
+      </app-presentation-note-list>
 
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="selectedNote">
     <div class="detail">
-      <app-presentation-note-detail></app-presentation-note-detail>
+      <app-presentation-note-detail [title]="selectedNote.title!" [detail]="selectedNote.detail!">
+      </app-presentation-note-detail>
     </div>
   </ng-container>
 </div>

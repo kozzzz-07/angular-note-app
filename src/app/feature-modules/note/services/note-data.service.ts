@@ -1,3 +1,4 @@
+import { NoteID } from 'src/app/models/note/note.model';
 import { Note } from './../../../models/note/note.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -25,5 +26,9 @@ export class NoteDataService {
     noteRepostiry.createNote().subscribe((notes) => {
       this._notes$.next(notes);
     });
+  }
+
+  getNoteById(id: NoteID): Note | undefined {
+    return noteRepostiry.getNoteById(id);
   }
 }

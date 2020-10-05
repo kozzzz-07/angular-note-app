@@ -5,7 +5,8 @@
 </div>
 <div class="notes">
   <ng-container *ngFor="let note of notes">
-    <app-note-list-item [id]="note.id" [title]="note.title" [createAt]="note.createAt" [excerpt]="note.excerpt">
+    <app-note-list-item (click)="clickList.emit(note.id)" [id]="note.id" [title]="note.title" [createAt]="note.createAt"
+      [excerpt]="note.excerpt">
     </app-note-list-item>
   </ng-container>
 </div>
