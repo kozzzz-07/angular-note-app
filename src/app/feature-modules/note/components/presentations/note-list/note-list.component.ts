@@ -7,11 +7,11 @@ import { NoteID, Note } from 'src/app/models/note/note.model';
   styleUrls: ['./note-list.component.scss'],
 })
 export class NoteListComponent implements OnInit {
-  @Input() id: NoteID = '';
-  @Input() title: Note['title'] = '';
-  @Input() excerpt: Note['excerpt'] = '';
-  @Input() createAt: Note['createAt'] = '';
-  @Input() updateAt: Note['updateAt'] = '';
+  @Input() id!: NoteID;
+  @Input() title!: Note['title'];
+  @Input() excerpt!: Note['excerpt'];
+  @Input() createAt!: Note['createAt'];
+  @Input() updateAt!: Note['updateAt'];
 
   date = '';
 

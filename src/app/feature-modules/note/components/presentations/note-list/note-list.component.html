@@ -1,5 +1,5 @@
 <div class="overview">
-  <div class="title">{{title}}</div>
-  <div class="date">{{createAt}}</div>
+  <div class="title">{{title || "Untitled"}}</div>
+  <div class="date">{{createAt | date:"yy/MM/dd"}}</div>
   <div class="excerpt">{{excerpt}}</div>
 </div>
