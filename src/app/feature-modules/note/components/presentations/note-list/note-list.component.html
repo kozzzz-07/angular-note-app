@@ -1,12 +1,16 @@
-<div class="ly_box">
-  <div class="title">Notes</div>
-  <!-- TODO:コンポーネント化（app-buttonへの置き換え） -->
-  <button class="button ly_button" (click)="addNote.emit()">+ ADD Note</button>
-</div>
-<div class="notes">
-  <ng-container *ngFor="let note of notes">
-    <app-note-list-item (click)="clickList.emit(note.id)" [id]="note.id" [title]="note.title" [createAt]="note.createAt"
-      [excerpt]="note.excerpt">
-    </app-note-list-item>
-  </ng-container>
+<div class="list">
+  <div class="ly_box">
+    <div class="title">Notes</div>
+    <!-- TODO:コンポーネント化（app-buttonへの置き換え） -->
+    <button class="button ly_button" (click)="addNote.emit()">+ ADD Note</button>
+  </div>
+  <div class="notes">
+    <ng-container *ngFor="let note of notes">
+      <div class="item">
+        <app-note-list-item (click)="clickList.emit(note.id)" [id]="note.id" [title]="note.title"
+          [createAt]="note.createAt" [excerpt]="note.excerpt">
+        </app-note-list-item>
+      </div>
+    </ng-container>
+  </div>
 </div>

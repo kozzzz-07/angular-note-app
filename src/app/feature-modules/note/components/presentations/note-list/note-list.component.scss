@@ -1,3 +1,8 @@
+.list {
+  display: grid;
+  height: 100vh;
+}
+
 .ly_box {
   padding: 30px 0px;
 }
@@ -9,6 +14,28 @@
 
 .notes {
   overflow: scroll;
+}
+
+.item:not(:first-child) {
+  border-top: 1px solid #666;
+}
+
+.item {
+  text-align: left;
+  padding: 20px;
+  max-height: 150px;
+  line-height: 1.3;
+  opacity: 0.6;
+}
+
+.item:hover {
+  background-color: #CCC;
+  opacity: 0.8;
+}
+
+.selected {
+  background-color: #BBB;
+  opacity: 1;
 }
 
 /////////////////////////////
