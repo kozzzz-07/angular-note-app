@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NoteID, Note } from 'src/app/models/note/note.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Note } from 'src/app/models/note/note.model';
 
 @Component({
   selector: 'app-presentation-note-list',
@@ -7,13 +7,8 @@ import { NoteID, Note } from 'src/app/models/note/note.model';
   styleUrls: ['./note-list.component.scss'],
 })
 export class NoteListComponent implements OnInit {
-  @Input() id!: NoteID;
-  @Input() title!: Note['title'];
-  @Input() excerpt!: Note['excerpt'];
-  @Input() createAt!: Note['createAt'];
-  @Input() updateAt!: Note['updateAt'];
-
-  date = '';
+  @Input() notes!: Note[];
+  @Output() addNote: EventEmitter<void> = new EventEmitter();
 
   constructor() {}
 
