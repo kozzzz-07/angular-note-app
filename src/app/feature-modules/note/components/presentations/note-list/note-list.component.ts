@@ -9,7 +9,7 @@ import { Note, NoteID } from 'src/app/models/note/note.model';
 export class NoteListComponent implements OnInit {
   @Input() notes!: Note[];
   @Output() addNote: EventEmitter<void> = new EventEmitter();
-  @Output() clickList: EventEmitter<NoteID> = new EventEmitter();
+  @Output() clickListItem: EventEmitter<NoteID> = new EventEmitter();
 
   constructor() {}
 

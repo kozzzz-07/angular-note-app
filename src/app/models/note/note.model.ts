@@ -8,3 +8,5 @@ export type Note = {
 };
 
 export type NoteID = string;
+
+export type UpdateNote = Pick<Note, 'title' | 'detail'>;

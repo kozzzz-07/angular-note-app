@@ -1,5 +1,4 @@
-import { NoteID } from 'src/app/models/note/note.model';
-import { Note } from './../../../../../models/note/note.model';
+import { Note, NoteID } from './../../../../../models/note/note.model';
 import { NoteDataService } from './../../../services/note-data.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,6 +11,7 @@ export class NoteListComponent implements OnInit {
   notes$ = this.noteDataService.notes$;
 
   selectedNote: Note | undefined;
+  noteId: NoteID = '';
 
   constructor(private noteDataService: NoteDataService) {}
 
@@ -23,15 +23,16 @@ export class NoteListComponent implements OnInit {
     this.noteDataService.createNote();
   }
 
-  clickList(id: NoteID): void {
+  clickListItem(id: NoteID): void {
+    this.noteId = id; // キャッシュする
     this.selectedNote = this.noteDataService.getNoteById(id);
   }
 
   changeTitle(title: string): void {
-    console.log(title);
+    this.noteDataService.updateNote(this.noteId, { title });
   }
 
   changeDetail(detail: string): void {
-    console.log(detail);
+    this.noteDataService.updateNote(this.noteId, { detail });
   }
 }

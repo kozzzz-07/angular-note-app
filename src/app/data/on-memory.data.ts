@@ -1,4 +1,4 @@
-import { NoteID } from 'src/app/models/note/note.model';
+import { NoteID, UpdateNote } from 'src/app/models/note/note.model';
 // 一旦オンメモリでの管理
 // TODO: local storage化
 // TODO: DB使用
@@ -14,6 +14,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      detail: 'aaaaaaaaaaaa',
     },
     {
       id: 'b',
@@ -21,6 +22,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      detail: 'iiiiiiiii',
     },
     {
       id: 'c',
@@ -28,6 +30,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      detail: 'uuuuuuu',
     },
     {
       id: '',
@@ -89,13 +92,15 @@ class NoteRepostiry {
     return of(this.notes);
   }
 
-  updateNote(note: Note): boolean {
-    // ここでやっていいのか？
-    if (this.notes.some((_note: { id: NoteID }) => _note.id !== note.id)) {
-      return false;
-    }
-    this.notes = [{ ...note }, ...this.notes];
-    return true;
+  updateNote(id: NoteID, data: UpdateNote): Observable<Note[]> {
+    // イミュータブルに扱いたいけど、もっといいやり方あるかな？
+    const note = this.notes.find(
+      (_note: { id: NoteID }) => _note.id === id
+    ) as Note;
+    const notes = this.notes.filter((_note: { id: NoteID }) => _note.id !== id);
+    this.notes = [{ ...note, ...data }, ...notes];
+
+    return of(this.notes);
   }
 
   fetchNotes(): Observable<Note[]> {
@@ -115,6 +120,9 @@ class NoteRepostiry {
   private genatreteId(): NoteID {
     return new Date().getTime().toString(36);
   }
+
+  // TODO: ソート
+  private compareDate() {}
 }
 
 export const noteRepostiry = new NoteRepostiry();
