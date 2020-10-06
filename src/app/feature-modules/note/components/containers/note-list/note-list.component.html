@@ -6,11 +6,11 @@
     </ng-container>
   </div>
 
-  <ng-container *ngIf="selectedNote">
-    <div class="detail">
+  <div class="detail">
+    <ng-container *ngIf="selectedNote">
       <app-presentation-note-detail [title]="selectedNote.title!" [detail]="selectedNote.detail!"
         (changeTitle)="changeTitle($event)" (changeDetail)="changeDetail($event)">
       </app-presentation-note-detail>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
