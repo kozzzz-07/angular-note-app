@@ -9,6 +9,7 @@ import { NoteDetailComponent as NoteDetailContainerComponent } from './component
 import { NoteListComponent } from './components/presentations/note-list/note-list.component';
 import { NoteDetailComponent } from './components/presentations/note-detail/note-detail.component';
 import { NoteListItemComponent } from './components/presentations/note-list-item/note-list-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ import { NoteListItemComponent } from './components/presentations/note-list-item
     NoteDetailComponent,
     NoteListItemComponent,
   ],
-  imports: [CommonModule, NoteRoutingModule, SharedModule],
+  imports: [CommonModule, NoteRoutingModule, SharedModule, FormsModule],
 })
 export class NoteModule {}

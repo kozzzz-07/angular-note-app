@@ -23,7 +23,15 @@ export class NoteListComponent implements OnInit {
     this.noteDataService.createNote();
   }
 
-  clickList(id: NoteID) {
+  clickList(id: NoteID): void {
     this.selectedNote = this.noteDataService.getNoteById(id);
+  }
+
+  changeTitle(title: string): void {
+    console.log(title);
+  }
+
+  changeDetail(detail: string): void {
+    console.log(detail);
   }
 }
