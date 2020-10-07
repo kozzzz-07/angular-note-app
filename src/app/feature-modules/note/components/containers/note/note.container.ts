@@ -1,18 +1,13 @@
-import {
-  Note,
-  NoteID,
-  NoteState,
-} from './../../../../../models/note/note.model';
-import { NoteDataService } from './../../../services/note-data.service';
+import { Note, NoteID, NoteState } from '../../../../../models/note/note.model';
+import { NoteDataService } from '../../../services/note-data.service';
 import { Component, OnInit } from '@angular/core';
 
-// 名前をnoteにしたい
 @Component({
-  selector: 'app-note-list',
-  templateUrl: './note-list.component.html',
-  styleUrls: ['./note-list.component.scss'],
+  selector: 'app-container-note',
+  templateUrl: './note.container.html',
+  styleUrls: ['./note.container.scss'],
 })
-export class NoteListComponent implements OnInit {
+export class NoteContainerComponent implements OnInit {
   notes$ = this.noteDataService.notes$;
 
   selectedNote: Note | undefined;

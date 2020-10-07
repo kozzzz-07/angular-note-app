@@ -1,12 +1,12 @@
-import { NoteDetailComponent } from './components/presentations/note-detail/note-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotePageComponent } from './components/pages/note/note.page';
 
+// page単位の遅延ロード
 const routes: Routes = [
   {
     path: '',
-    component: NotePageComponent,
+    loadChildren: () =>
+      import('./components/pages/note/note.module').then((m) => m.NoteModule),
   },
 ];
 
