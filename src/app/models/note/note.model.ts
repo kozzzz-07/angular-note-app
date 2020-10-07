@@ -7,6 +7,12 @@ export type Note = {
   updateAt?: string;
 };
 
+export type NoteState = {
+  isSelected: boolean;
+};
+
+export type NoteAndState = Note & NoteState;
+
 export type NoteID = string;
 
 export type UpdateNote = Pick<Note, 'title' | 'detail'>;

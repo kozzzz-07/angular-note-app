@@ -1,7 +1,12 @@
-import { Note, NoteID } from './../../../../../models/note/note.model';
+import {
+  Note,
+  NoteID,
+  NoteState,
+} from './../../../../../models/note/note.model';
 import { NoteDataService } from './../../../services/note-data.service';
 import { Component, OnInit } from '@angular/core';
 
+// 名前をnoteにしたい
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
@@ -25,6 +30,10 @@ export class NoteListComponent implements OnInit {
 
   clickListItem(id: NoteID): void {
     this.noteId = id; // キャッシュする
+    const state: NoteState = {
+      isSelected: true,
+    };
+    this.noteDataService.updateNoteStatus(id, state);
     this.selectedNote = this.noteDataService.getNoteById(id);
   }
 

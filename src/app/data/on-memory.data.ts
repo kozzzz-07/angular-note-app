@@ -1,13 +1,17 @@
-import { NoteID, UpdateNote } from 'src/app/models/note/note.model';
+import { NoteState } from './../models/note/note.model';
+import {
+  NoteID,
+  UpdateNote,
+  NoteAndState,
+} from 'src/app/models/note/note.model';
 // 一旦オンメモリでの管理
 // TODO: local storage化
 // TODO: DB使用
 
-import { Note } from '../models/note/note.model';
 import { Observable, from, of } from 'rxjs';
 
 class NoteRepostiry {
-  private notes: Note[] = [
+  private notes: NoteAndState[] = [
     {
       id: 'a',
       title: 'aほげほげ',
@@ -15,6 +19,7 @@ class NoteRepostiry {
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
       detail: 'aaaaaaaaaaaa',
+      isSelected: true,
     },
     {
       id: 'b',
@@ -23,6 +28,7 @@ class NoteRepostiry {
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
       detail: 'iiiiiiiii',
+      isSelected: false,
     },
     {
       id: 'c',
@@ -31,6 +37,7 @@ class NoteRepostiry {
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
       detail: 'uuuuuuu',
+      isSelected: false,
     },
     {
       id: '',
@@ -38,6 +45,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
     {
       id: '',
@@ -45,6 +53,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
     {
       id: '',
@@ -52,6 +61,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
     {
       id: '',
@@ -59,6 +69,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
     {
       id: '',
@@ -66,6 +77,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
     {
       id: '',
@@ -73,6 +85,7 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
     {
       id: '',
@@ -80,38 +93,112 @@ class NoteRepostiry {
       createAt: '2020/04/01',
       excerpt:
         'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
+    },
+    {
+      id: '',
+      title: 'ふがふが',
+      createAt: '2020/04/01',
+      excerpt:
+        'あああああああああああああああああああああああああああああああああああ',
+      isSelected: false,
     },
   ];
 
-  createNote(): Observable<Note[]> {
-    const note: Note = {
+  // TODO:くるくるつける？
+
+  createNote(): Observable<NoteAndState[]> {
+    const note: NoteAndState = {
       id: this.genatreteId(),
       createAt: new Date().toISOString(),
+      isSelected: true,
     };
-    this.notes = [{ ...note }, ...this.notes];
+
+    const notes = this.notes.map((_note) => ({ ..._note, isSelected: false }));
+    this.notes = [{ ...note }, ...notes];
     return of(this.notes);
   }
 
-  updateNote(id: NoteID, data: UpdateNote): Observable<Note[]> {
+  updateNote(id: NoteID, data: UpdateNote): Observable<NoteAndState[]> {
     // イミュータブルに扱いたいけど、もっといいやり方あるかな？
     const note = this.notes.find(
       (_note: { id: NoteID }) => _note.id === id
-    ) as Note;
+    ) as NoteAndState;
     const notes = this.notes.filter((_note: { id: NoteID }) => _note.id !== id);
+    // 更新したら先頭に持っていく
     this.notes = [{ ...note, ...data }, ...notes];
 
     return of(this.notes);
   }
 
-  fetchNotes(): Observable<Note[]> {
+  updateNoteState(id: NoteID, state: NoteState): Observable<NoteAndState[]> {
+    const notes = this.notes.map<NoteAndState>((note) =>
+      note.id === id
+        ? { ...note, ...state }
+        : { ...note, ...{ isSelected: false } }
+    );
+    this.notes = notes;
+
     return of(this.notes);
   }
 
-  fetchNote(): Observable<Note> {
+  fetchNotes(): Observable<NoteAndState[]> {
+    return of(this.notes);
+  }
+
+  fetchNote(): Observable<NoteAndState> {
     return from(this.notes);
   }
 
-  getNoteById(id: NoteID): Note | undefined {
+  getNoteById(id: NoteID): NoteAndState | undefined {
     return this.notes.find((note: { id: NoteID }) => note.id === id);
   }
 

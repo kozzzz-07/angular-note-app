@@ -6,7 +6,7 @@
   </div>
   <div class="notes">
     <ng-container *ngFor="let note of notes">
-      <div class="item">
+      <div class="item" [class]="note.isSelected ? 'selected' : ''">
         <app-note-list-item (click)="clickListItem.emit(note.id)" [id]="note.id" [title]="note.title"
           [createAt]="note.createAt" [excerpt]="note.excerpt">
         </app-note-list-item>
