@@ -11,154 +11,14 @@ import {
 import { Observable, from, of } from 'rxjs';
 
 class NoteRepostiry {
-  private notes: NoteAndState[] = [
-    {
-      id: 'a',
-      title: 'aほげほげ',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      detail: 'aaaaaaaaaaaa',
-      isSelected: true,
-    },
-    {
-      id: 'b',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      detail: 'iiiiiiiii',
-      isSelected: false,
-    },
-    {
-      id: 'c',
-      title: 'ピヨ',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      detail: 'uuuuuuu',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-    {
-      id: '',
-      title: 'ふがふが',
-      createAt: '2020/04/01',
-      excerpt:
-        'あああああああああああああああああああああああああああああああああああ',
-      isSelected: false,
-    },
-  ];
+  private notes: NoteAndState[] = [];
 
   // TODO:くるくるつける？
 
   createNote(): Observable<NoteAndState[]> {
     const note: NoteAndState = {
       id: this.genatreteId(),
-      createAt: new Date().toISOString(),
+      createAt: this.getISO(),
       isSelected: true,
     };
 
@@ -168,6 +28,21 @@ class NoteRepostiry {
   }
 
   updateNote(id: NoteID, data: UpdateNote): Observable<NoteAndState[]> {
+    if (data.detail) {
+      const excerpt =
+        data.detail.length < 50 ? data.detail : data.detail.slice(20);
+      data = {
+        ...data,
+        excerpt,
+        updateAt: this.getISO(),
+      };
+    } else {
+      data = {
+        ...data,
+        updateAt: this.getISO(),
+      };
+    }
+
     // イミュータブルに扱いたいけど、もっといいやり方あるかな？
     const note = this.notes.find(
       (_note: { id: NoteID }) => _note.id === id
@@ -175,18 +50,16 @@ class NoteRepostiry {
     const notes = this.notes.filter((_note: { id: NoteID }) => _note.id !== id);
     // 更新したら先頭に持っていく
     this.notes = [{ ...note, ...data }, ...notes];
-
     return of(this.notes);
   }
 
   updateNoteState(id: NoteID, state: NoteState): Observable<NoteAndState[]> {
+    const defaultState: NoteState = { isSelected: false };
+
     const notes = this.notes.map<NoteAndState>((note) =>
-      note.id === id
-        ? { ...note, ...state }
-        : { ...note, ...{ isSelected: false } }
+      note.id === id ? { ...note, ...state } : { ...note, ...defaultState }
     );
     this.notes = notes;
-
     return of(this.notes);
   }
 
@@ -206,6 +79,10 @@ class NoteRepostiry {
 
   private genatreteId(): NoteID {
     return new Date().getTime().toString(36);
+  }
+
+  private getISO(): string {
+    return new Date().toISOString();
   }
 
   // TODO: ソート

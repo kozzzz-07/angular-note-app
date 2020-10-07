@@ -13,8 +13,6 @@ export class NoteListItemComponent implements OnInit {
   @Input() createAt!: Note['createAt'];
   @Input() updateAt!: Note['updateAt'];
 
-  date = '';
-
   constructor() {}
 
   ngOnInit(): void {}

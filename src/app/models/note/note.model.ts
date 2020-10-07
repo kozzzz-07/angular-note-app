@@ -15,4 +15,7 @@ export type NoteAndState = Note & NoteState;
 
 export type NoteID = string;
 
-export type UpdateNote = Pick<Note, 'title' | 'detail'>;
+export type UpdateNote = Pick<
+  Note,
+  'title' | 'detail' | 'excerpt' | 'updateAt'
+>;

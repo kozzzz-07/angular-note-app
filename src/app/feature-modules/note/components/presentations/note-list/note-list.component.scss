@@ -1,6 +1,7 @@
 .list {
-  display: grid;
+  display: flex;
   height: 100vh;
+  flex-direction: column;
 }
 
 .ly_box {
