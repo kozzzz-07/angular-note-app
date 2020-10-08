@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteContainerComponent implements OnInit {
   notes$ = this.noteDataService.notes$;
+  note$ = this.noteDataService.note$;
 
-  selectedNote: Note | undefined;
   noteId: NoteID = '';
 
   constructor(private noteDataService: NoteDataService) {}
@@ -26,7 +26,7 @@ export class NoteContainerComponent implements OnInit {
       isSelected: true,
     };
     this.noteDataService.updateNoteStatus(id, state);
-    this.selectedNote = this.noteDataService.getNoteById(id);
+    this.noteDataService.fetchNote(id);
   }
 
   clickListItem(id: NoteID): void {
@@ -35,8 +35,7 @@ export class NoteContainerComponent implements OnInit {
       isSelected: true,
     };
     this.noteDataService.updateNoteStatus(id, state);
-    this.selectedNote = this.noteDataService.getNoteById(id);
-    console.log('clicklist', this.selectedNote);
+    this.noteDataService.fetchNote(id);
   }
 
   changeTitle(title: string): void {

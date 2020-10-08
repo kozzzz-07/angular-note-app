@@ -71,12 +71,12 @@ class NoteRepostiry {
     return of(this.notes);
   }
 
-  fetchNote(): Observable<NoteAndState> {
+  private fetchNote(): Observable<NoteAndState> {
     return from(this.notes);
   }
 
-  getNoteById(id: NoteID): NoteAndState | undefined {
-    return this.notes.find((note: { id: NoteID }) => note.id === id);
+  getNoteById(id: NoteID): Observable<NoteAndState | undefined> {
+    return of(this.notes.find((note: { id: NoteID }) => note.id === id));
   }
 
   private deleteNote() {}

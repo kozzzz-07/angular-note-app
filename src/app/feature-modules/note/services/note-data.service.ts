@@ -13,11 +13,16 @@ import { noteRepostiry } from 'src/app/data/on-memory.data';
 })
 export class NoteDataService {
   private _notes$ = new BehaviorSubject<NoteAndState[]>([]);
+  private _note$ = new BehaviorSubject<NoteAndState | undefined>(undefined);
 
   constructor() {}
 
   get notes$(): Observable<NoteAndState[]> {
     return this._notes$.asObservable();
+  }
+
+  get note$(): Observable<NoteAndState | undefined> {
+    return this._note$.asObservable();
   }
 
   fetchNotes(): void {
@@ -30,8 +35,10 @@ export class NoteDataService {
     return noteRepostiry.createNote();
   }
 
-  getNoteById(id: NoteID): NoteAndState | undefined {
-    return noteRepostiry.getNoteById(id);
+  fetchNote(id: NoteID): void {
+    noteRepostiry.getNoteById(id).subscribe((note) => {
+      this._note$.next(note);
+    });
   }
 
   updateNoteStatus(id: NoteID, state: NoteState): void {

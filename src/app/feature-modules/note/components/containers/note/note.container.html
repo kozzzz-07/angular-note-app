@@ -7,9 +7,9 @@
   </div>
 
   <div class="detail">
-    <ng-container *ngIf="selectedNote">
-      <app-presentation-note-detail [title]="selectedNote.title" [detail]="selectedNote.detail"
-        (changeTitle)="changeTitle($event)" (changeDetail)="changeDetail($event)">
+    <ng-container *ngIf="note$ | async as note">
+      <app-presentation-note-detail [title]="note.title" [detail]="note.detail" (changeTitle)="changeTitle($event)"
+        (changeDetail)="changeDetail($event)">
       </app-presentation-note-detail>
     </ng-container>
   </div>
