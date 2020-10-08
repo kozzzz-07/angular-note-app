@@ -26,10 +26,8 @@ export class NoteDataService {
     });
   }
 
-  createNote(): void {
-    noteRepostiry.createNote().subscribe((notes) => {
-      this._notes$.next(notes);
-    });
+  createNote(): NoteID {
+    return noteRepostiry.createNote();
   }
 
   getNoteById(id: NoteID): NoteAndState | undefined {

@@ -20,16 +20,23 @@ export class NoteContainerComponent implements OnInit {
   }
 
   addNote(): void {
-    this.noteDataService.createNote();
-  }
-
-  clickListItem(id: NoteID): void {
+    const id = this.noteDataService.createNote();
     this.noteId = id; // キャッシュする
     const state: NoteState = {
       isSelected: true,
     };
     this.noteDataService.updateNoteStatus(id, state);
     this.selectedNote = this.noteDataService.getNoteById(id);
+  }
+
+  clickListItem(id: NoteID): void {
+    this.noteId = id;
+    const state: NoteState = {
+      isSelected: true,
+    };
+    this.noteDataService.updateNoteStatus(id, state);
+    this.selectedNote = this.noteDataService.getNoteById(id);
+    console.log('clicklist', this.selectedNote);
   }
 
   changeTitle(title: string): void {

@@ -8,7 +8,7 @@
 
   <div class="detail">
     <ng-container *ngIf="selectedNote">
-      <app-presentation-note-detail [title]="selectedNote.title!" [detail]="selectedNote.detail!"
+      <app-presentation-note-detail [title]="selectedNote.title" [detail]="selectedNote.detail"
         (changeTitle)="changeTitle($event)" (changeDetail)="changeDetail($event)">
       </app-presentation-note-detail>
     </ng-container>
