@@ -15,16 +15,20 @@ class NoteRepostiry {
 
   // TODO:くるくるつける？
 
-  createNote(): Observable<NoteAndState[]> {
+  createNote(): NoteID {
     const note: NoteAndState = {
       id: this.genatreteId(),
+      title: '',
+      detail: '',
       createAt: this.getISO(),
-      isSelected: true,
+      isSelected: false,
     };
 
+    // Stateの初期化
     const notes = this.notes.map((_note) => ({ ..._note, isSelected: false }));
+
     this.notes = [{ ...note }, ...notes];
-    return of(this.notes);
+    return note.id;
   }
 
   updateNote(id: NoteID, data: UpdateNote): Observable<NoteAndState[]> {
@@ -67,12 +71,12 @@ class NoteRepostiry {
     return of(this.notes);
   }
 
-  fetchNote(): Observable<NoteAndState> {
+  private fetchNote(): Observable<NoteAndState> {
     return from(this.notes);
   }
 
-  getNoteById(id: NoteID): NoteAndState | undefined {
-    return this.notes.find((note: { id: NoteID }) => note.id === id);
+  getNoteById(id: NoteID): Observable<NoteAndState | undefined> {
+    return of(this.notes.find((note: { id: NoteID }) => note.id === id));
   }
 
   private deleteNote() {}
