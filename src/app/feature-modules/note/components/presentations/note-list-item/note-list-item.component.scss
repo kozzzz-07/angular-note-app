@@ -1,0 +1,17 @@
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.date {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #03A9F4;
+}
+
+.excerpt {
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

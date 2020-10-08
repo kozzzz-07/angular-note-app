@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NoteDetailComponent } from '../../containers/note-detail/note-detail.component';
+import { NotePageComponent } from './note.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: NoteDetailComponent,
+    component: NotePageComponent,
   },
 ];
 
