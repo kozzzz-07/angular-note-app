@@ -1,11 +1,5 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  NgZone,
-} from '@angular/core';
+import { Note } from 'src/app/models/note/note.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-presentation-note-detail',
@@ -13,18 +7,11 @@ import {
   styleUrls: ['./note-detail.component.scss'],
 })
 export class NoteDetailComponent implements OnInit {
-  @Input() title!: string;
-  @Input() detail!: string;
+  @Input() note!: Note;
   @Output() changeTitle: EventEmitter<string> = new EventEmitter();
   @Output() changeDetail: EventEmitter<string> = new EventEmitter();
 
-  constructor(private zone: NgZone) {
-    zone.onMicrotaskEmpty.subscribe(() => {
-      console.log('detect change');
-      console.log(this.title);
-      console.log(this.detail);
-    });
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }

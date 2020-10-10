@@ -1,6 +1,6 @@
 <div class="note">
-  <input class="title" type="text" placeholder="Untitled" [(ngModel)]="title"
-    (ngModelChange)="changeTitle.emit(title)" />
-  <textarea class="detail" placeholder="Type for me..//" [(ngModel)]="detail"
-    (ngModelChange)="changeDetail.emit(detail)"></textarea>
+  <input class="title" type="text" placeholder="Untitled" [(ngModel)]="note.title"
+    (ngModelChange)="changeTitle.emit(note.title)" />
+  <textarea class="detail" placeholder="Type for me..//" [(ngModel)]="note.detail"
+    (ngModelChange)="changeDetail.emit(note.detail)"></textarea>
 </div>
