@@ -10,14 +10,14 @@ import {
 
 import { Observable, from, of } from 'rxjs';
 
-class NoteRepostiry {
+class NoteRepository {
   private notes: NoteAndState[] = [];
 
   // TODO:くるくるつける？
 
   createNote(): NoteID {
     const note: NoteAndState = {
-      id: this.genatreteId(),
+      id: this.generateId(),
       title: '',
       detail: '',
       createAt: this.getISO(),
@@ -81,7 +81,7 @@ class NoteRepostiry {
 
   private deleteNote() {}
 
-  private genatreteId(): NoteID {
+  private generateId(): NoteID {
     return new Date().getTime().toString(36);
   }
 
@@ -93,4 +93,4 @@ class NoteRepostiry {
   private compareDate() {}
 }
 
-export const noteRepostiry = new NoteRepostiry();
+export const noteRepository = new NoteRepository();

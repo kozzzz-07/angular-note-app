@@ -6,7 +6,7 @@ import {
 import { UpdateNote } from './../../../models/note/note.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { noteRepostiry } from 'src/app/data/on-memory.data';
+import { noteRepository } from 'src/app/data/on-memory.data';
 
 @Injectable({
   providedIn: 'root',
@@ -26,30 +26,30 @@ export class NoteDataService {
   }
 
   fetchNotes(): void {
-    noteRepostiry.fetchNotes().subscribe((notes) => {
+    noteRepository.fetchNotes().subscribe((notes) => {
       this._notes$.next(notes);
     });
   }
 
   createNote(): NoteID {
-    return noteRepostiry.createNote();
+    return noteRepository.createNote();
   }
 
   fetchNote(id: NoteID): void {
-    noteRepostiry.getNoteById(id).subscribe((note) => {
+    noteRepository.getNoteById(id).subscribe((note) => {
       this._note$.next(note);
     });
   }
 
   updateNoteStatus(id: NoteID, state: NoteState): void {
-    noteRepostiry.updateNoteState(id, state).subscribe((notes) => {
+    noteRepository.updateNoteState(id, state).subscribe((notes) => {
       this._notes$.next(notes);
     });
   }
 
   // TODO: 結果返したほうがいい？
   updateNote(id: NoteID, data: UpdateNote): void {
-    noteRepostiry.updateNote(id, data).subscribe((notes) => {
+    noteRepository.updateNote(id, data).subscribe((notes) => {
       this._notes$.next(notes);
     });
   }
