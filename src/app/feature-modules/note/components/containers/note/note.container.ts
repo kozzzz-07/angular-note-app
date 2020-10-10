@@ -1,4 +1,4 @@
-import { Note, NoteID, NoteState } from '../../../../../models/note/note.model';
+import { NoteID, NoteState } from '../../../../../models/note/note.model';
 import { NoteDataService } from '../../../services/note-data.service';
 import { Component, OnInit } from '@angular/core';
 

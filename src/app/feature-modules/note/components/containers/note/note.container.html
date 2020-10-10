@@ -8,7 +8,7 @@
 
   <div class="detail">
     <ng-container *ngIf="note$ | async as note">
-      <app-presentation-note-detail [title]="note.title" [detail]="note.detail" (changeTitle)="changeTitle($event)"
+      <app-presentation-note-detail [note]="note" (changeTitle)="changeTitle($event)"
         (changeDetail)="changeDetail($event)">
       </app-presentation-note-detail>
     </ng-container>
