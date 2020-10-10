@@ -1,6 +1,9 @@
 .title {
   font-size: 1.2rem;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .date {
