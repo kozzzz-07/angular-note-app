@@ -22,4 +22,8 @@ describe('NoteDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('', () => {
+
+  });
 });

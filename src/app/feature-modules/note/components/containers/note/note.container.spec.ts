@@ -22,20 +22,3 @@ describe('NoteListComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-// notes: Note[] = [
-//   {
-//     id: 'a',
-//     title: 'ほげほげ',
-//     createAt: '2020/04/01',
-//     excerpt:
-//       'あああああああああああああああああああああああああああああああああああ',
-//   },
-//   {
-//     id: 'a',
-//     title: 'ほげほげ',
-//     createAt: '2020/04/01',
-//     excerpt:
-//       'あああああああああああああああああああああああああああああああああああ',
-//   },
-// ];

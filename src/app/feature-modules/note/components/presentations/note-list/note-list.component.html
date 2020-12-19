@@ -11,7 +11,7 @@
       <div
         class="item"
         [class]="note.isSelected ? 'selected' : ''"
-        (click)="clickListItem.emit(note.id)"
+        (click)="onClickListItem(note.id)"
       >
         <app-note-list-item
           [id]="note.id"

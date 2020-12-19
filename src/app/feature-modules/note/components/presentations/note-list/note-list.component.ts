@@ -14,4 +14,8 @@ export class NoteListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onClickListItem(id: NoteID): void {
+    this.clickListItem.emit(id);
+  }
 }
