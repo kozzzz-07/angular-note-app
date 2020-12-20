@@ -4,7 +4,7 @@ import { getTestNotes } from 'src/app/testing/note/models/test-note';
 
 import { NoteListComponent } from './note-list.component';
 
-fdescribe('NoteListComponent', () => {
+describe('NoteListComponent', () => {
   let component: NoteListComponent;
   let fixture: ComponentFixture<NoteListComponent>;
 

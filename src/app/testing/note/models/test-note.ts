@@ -8,21 +8,26 @@ export function getTestNotes(): NoteAndState[] {
       title: 'title',
       createAt: '2020-11-19T15:00:00.000Z',
       detail: 'abcdefg',
-      excerpt:
-        'abcdefg',
-      isSelected: true
+      excerpt: 'abcdefg',
+      isSelected: true,
     },
     {
       id: '2',
       title: 'title2',
       createAt: '2020-11-20T15:00:00.000Z',
       detail: 'abcdefg',
-      excerpt:
-        'abcdefg',
-      isSelected: false
+      excerpt: 'abcdefg',
+      isSelected: false,
     },
   ];
 }
 
-
-
+export function getTestNote(): Note {
+  return {
+    id: '1',
+    title: 'title',
+    createAt: '2020-11-19T15:00:00.000Z',
+    detail: 'abcdefg',
+    excerpt: 'abcdefg',
+  };
+}
