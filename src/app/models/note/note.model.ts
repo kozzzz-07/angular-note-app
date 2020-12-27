@@ -16,5 +16,5 @@ export type NoteAndState = Note & NoteState;
 export type NoteID = string;
 
 export type UpdateNote = Partial<
-  Pick<Note, 'title' | 'detail' | 'excerpt' | 'updateAt'>
+  Pick<Note, 'title' | 'detail' | 'excerpt'>
 >;
