@@ -14,4 +14,12 @@ export class NoteDetailComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onChangeTitle(title: Note['title']): void {
+    this.changeTitle.emit(title);
+  }
+
+  onChangeDetail(detail: Note['detail']): void {
+    this.changeDetail.emit(detail);
+  }
 }

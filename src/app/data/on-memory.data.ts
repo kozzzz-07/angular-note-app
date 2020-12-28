@@ -1,16 +1,20 @@
-import { NoteState } from './../models/note/note.model';
 import {
   NoteID,
   UpdateNote,
   NoteAndState,
+  NoteState,
 } from 'src/app/models/note/note.model';
 // 一旦オンメモリでの管理
 // TODO: local storage化
 // TODO: DB使用
 
 import { Observable, from, of } from 'rxjs';
+import { Injectable } from '@angular/core';
 
-class NoteRepository {
+@Injectable({
+  providedIn: 'root',
+})
+export class NoteRepository {
   private notes: NoteAndState[] = [];
 
   // TODO:くるくるつける？
@@ -38,12 +42,10 @@ class NoteRepository {
       data = {
         ...data,
         excerpt,
-        updateAt: this.getISO(),
       };
     } else {
       data = {
         ...data,
-        updateAt: this.getISO(),
       };
     }
 
@@ -53,7 +55,7 @@ class NoteRepository {
     ) as NoteAndState;
     const notes = this.notes.filter((_note: { id: NoteID }) => _note.id !== id);
     // 更新したら先頭に持っていく
-    this.notes = [{ ...note, ...data }, ...notes];
+    this.notes = [{ ...note, ...{ ...data, updateAt: this.getISO() } }, ...notes];
     return of(this.notes);
   }
 
@@ -93,4 +95,4 @@ class NoteRepository {
   private compareDate() {}
 }
 
-export const noteRepository = new NoteRepository();
+// export const noteRepository = new NoteRepository();

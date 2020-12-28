@@ -6,7 +6,7 @@ import {
 import { UpdateNote } from './../../../models/note/note.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { noteRepository } from 'src/app/data/on-memory.data';
+import { NoteRepository } from 'src/app/data/on-memory.data';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class NoteDataService {
   private _notes$ = new BehaviorSubject<NoteAndState[]>([]);
   private _note$ = new BehaviorSubject<NoteAndState | undefined>(undefined);
 
-  constructor() {}
+  constructor(private noteRepository: NoteRepository) {}
 
   get notes$(): Observable<NoteAndState[]> {
     return this._notes$.asObservable();
@@ -26,30 +26,30 @@ export class NoteDataService {
   }
 
   fetchNotes(): void {
-    noteRepository.fetchNotes().subscribe((notes) => {
+    this.noteRepository.fetchNotes().subscribe((notes) => {
       this._notes$.next(notes);
     });
   }
 
   createNote(): NoteID {
-    return noteRepository.createNote();
+    return this.noteRepository.createNote();
   }
 
   fetchNote(id: NoteID): void {
-    noteRepository.getNoteById(id).subscribe((note) => {
+    this.noteRepository.getNoteById(id).subscribe((note) => {
       this._note$.next(note);
     });
   }
 
   updateNoteStatus(id: NoteID, state: NoteState): void {
-    noteRepository.updateNoteState(id, state).subscribe((notes) => {
+    this.noteRepository.updateNoteState(id, state).subscribe((notes) => {
       this._notes$.next(notes);
     });
   }
 
   // TODO: 結果返したほうがいい？
   updateNote(id: NoteID, data: UpdateNote): void {
-    noteRepository.updateNote(id, data).subscribe((notes) => {
+    this.noteRepository.updateNote(id, data).subscribe((notes) => {
       this._notes$.next(notes);
     });
   }
