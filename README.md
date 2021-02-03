@@ -10,9 +10,9 @@
 
 ## 目的
 
-- レイヤードアーキテクチャ のお勉強
+- Presentational and Container Components のお勉強
 
 ## キーワード
 
-- レイヤードアーキテクチャ
+- Presentational and Container Components
 - Single Data Service
